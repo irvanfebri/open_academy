@@ -115,7 +115,7 @@
                                     <field name="taken_seats" widget="progressbar" />
                                 </div>
                             </div>
-                        </div>
+                        
                     </t>
                 </templates>            
             </kanban>
