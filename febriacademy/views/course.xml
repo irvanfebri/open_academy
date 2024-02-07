@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- febriacademy.febriacademy form view -->
+<record id="febriacademy.febriacademy_view_form" model="ir.ui.view">
+    <field name="name">febriacademy.febriacademy.view.form</field>
+    <field name="model">febriacademy.febriacademy</field>
+    <field name="arch" type="xml">
+        <form string="">
+            <sheet>
+                <group>
+                   <field name="name" />
+                   <field name="user_id" />
+                  </group>
+                  <notebook>
+                    <page name="session_ids" string="Sessions">
+                        <field name="session_ids" />
+                    </page>
+                    <page name="description" string="Description">
+                        <field name="description" />
+                    </page>
+                  </notebook>
+                    
+              
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+<!-- febriacademy.febriacademy tree view -->
+<record id="febriacademy.febriacademy_view_tree" model="ir.ui.view">
+    <field name="name">febriacademy.febriacademy.view.tree</field>
+    <field name="model">febriacademy.febriacademy</field>
+    <field name="arch" type="xml">
+        <tree>
+           <field name="name" />
+           <field name="user_id" />
+           <field name="description" />
+            
+        </tree>
+    </field>
+</record>
+
+<!-- febriacademy search view -->
+<record id="febriacademy_view_search" model="ir.ui.view">
+    <field name="name">febriacademy.febriacademy.view.search</field>
+    <field name="model">febriacademy.febriacademy</field>
+    <field name="arch" type="xml">
+        <search string="Search Description">
+            <!-- Add your fields here -->
+            <field name="name" />
+            <field name="description" />
+
+            <filter name="my_courses" string="My Courses" domain="[('user_id', '=', 'uid')]"/>
+            <group string="Group By">
+                <filter name="group_by_responsible" string="Responsible" 
+                        context="{'group_by': 'user_id'}" />
+            </group>
+            
+        </search>
+    </field>
+</record>
+
+    <!-- model.name action window -->
+    <record id="febriacademy.febriacademy_action" model="ir.actions.act_window">
+        <field name="name">febriacademy.febriacademy.action</field>
+        <field name="res_model">febriacademy.febriacademy</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_my_courses':1}</field>
+    </record>
+
+    <menuitem
+        id="course_menu_act"
+        name="Course"
+        parent="febriansyah_menu_root"
+        action="febriacademy.febriacademy_action"
+        sequence="10"/>
+
+</odoo>

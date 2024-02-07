@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="febriansyah_menu_root"
+        name="Open Accademy"
+        sequence="10"/>
+
+</odoo>

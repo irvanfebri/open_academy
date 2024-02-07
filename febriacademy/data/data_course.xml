@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="course_odoo_technical" model="febriacademy.febriacademy">
+        <field name="name">Course Odoo Technical</field>
+         <field name="description">Course Odoo V 17 Community</field>
+    </record>
+    
+
+</odoo>

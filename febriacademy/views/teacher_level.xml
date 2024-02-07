@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- febriacademy.teacher_level action window -->
+    <record id="febriacademy.teacher_level_action" model="ir.actions.act_window">
+        <field name="name">Teacher Level</field>
+        <field name="res_model">febriacademy.teacher_level</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem 
+        id="configuration_menu_categ" 
+        name="configuration" parent="febriansyah_menu_root" sequence="30"/>
+
+    <menuitem
+        id="teacher_level_menu_act"
+        name="teacher_level"
+        action="febriacademy.teacher_level_action"
+        parent="febriacademy.configuration_menu_categ"
+        sequence="10"/>
+</odoo>

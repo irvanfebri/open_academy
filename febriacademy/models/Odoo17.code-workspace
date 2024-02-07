@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Odoo17"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"python.languageServer": "None"
+	}
+}
