@@ -62,8 +62,20 @@
         <field name="report_name">febriacademy.report_session</field>
         <field name="report_file">febriacademy.report_session</field>
         <field name="attachment_use" eval="True"/>
-        <field name="attachment">'Session '+(object.name or '')+' '+(object.course_id.name or '')+' '+(object.course_id.name or '')+'.pdf</field>
+        <field name="attachment">'Session '+(object.name or '')+' '+(object.course_id.name or '')+' '+(object.course_id.name or '')+'.pdf'</field>
         <field name="binding_model_id" ref="model_febriacademy_session"/>
         <field name="binding_type">report</field>
     </record>
+
+    <!-- <record id="action_report_session" model="ir.actions.report">
+        <field name="name">Attendees Xlsx</field>
+        <field name="model">febriacademy.session</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">febriacademy.report_session_xlsx</field>
+        <field name="report_file">febriacademy.report_session_xlsx</field>
+        <field name="attachment_use" eval="True"/>
+        <field name="attachment">'Session '+(object.name or '')+' '+(object.course_id.name or '')+' '+(object.course_id.name or '')+'.pdf</field>
+        <field name="binding_model_id" ref="model_febriacademy_session"/>
+        <field name="binding_type">report</field>
+    </record> -->
 </odoo>
