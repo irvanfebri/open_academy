@@ -31,6 +31,7 @@ Module course technical odoo community 17
         'views/views.xml',
         'views/templates.xml',
         'data/data_course.xml',
+         'reports/session.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
