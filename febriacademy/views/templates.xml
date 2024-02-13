@@ -1,24 +1,266 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
+
+        <template id="template" name="Template Irvan Academy">
+            <title>Febri Academy</title>
+            <t t-foreach="teachers" t-as="teacher">
+                <p>
+                    <t t-esc="teacher"/>
+                </p>
             </t>
-          </dl>
         </template>
--->
-    </data>
-</odoo>
+
+        <template id="data" name="Template Data Irvan Academy">
+            <title>Febri Academy/ Courses</title>
+            <t t-foreach="courses" t-as="course">
+                <p>
+                    <t t-esc="course.id"/>
+ -                    <t t-esc="course.name"/>
+                </p>
+            </t>
+        </template>
+        <!-- 
+
+       <template id="course">
+        <t t-call="website.layout">
+            <t t-set="title">Courses</t>
+                  <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-4">
+                            <p>
+                                <a href="/febriacademy/add_course" class="btn btn-primary btn-md">Add Data</a>
+                            </p>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Course</td>
+                                        <td>Reponsible</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="no" t-value="1"/>
+                                    <tr t-foreach="courses" t-as="course">
+                                        <td>
+                                            <span t-esc="no"/>
+                                        </td>   
+                                         <td>
+                                            <span t-esc="course.name"/>
+                                        </td>
+                                         <td>
+                                            <span t-esc="course.user_id.name"/>
+                                        </td>                                 
+                                         <td>
+                                            <a t-attf-href="/course/{{slug(course)}}" class="btn btn-info">Detail</a>
+                                            <a t-attf-href="/febriacademy/edit/{{slug(course)}}" class="btn btn-default btn">Edit</a>
+                                            <a t-attf-href="/febriacademy/delete/{{slug(course)}}" class="btn btn-danger">Delete</a>
+                                        </td>             
+                                        
+                                        
+                                        <t t-set="no" t-value="no + 1"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    <t t-foreach="courses" t-as="course">
+                        <p>
+                        <a t-attf-href="/course/{{slug(course)}}">
+                        <t t-esc="course.name"/>
+                        </a>
+                        </p>
+                    </t>
+                    
+                </div>
+            </div>
+        
+        </t>
+    </template>
+
+       <template id="detail_course">
+        <t t-call="website.layout">
+            <t t-set="title">Courses <span t-esc="course.name"/>
+            </t>
+            <div class="oe_structure/">
+              <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-4">
+                                <a href="/course">Back</a>
+                            </div>
+                        <div>
+                        <div class="row">
+                            <div class="col-12 mt-4">
+                                <h3>
+                                    <span t-esc="course.name"/>
+                                </h3>
+                                <p>
+                                    <span t-esc="course.description"/>
+                                </p>
+                            
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-12 mt-4">
+                <p>
+                    <h3>Session</h3>
+                </p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>No</td>
+                           <td>Name</td>
+                              <td>Start Date</td>
+                                 <td>Instructor</td>
+                                    <td>Duration</td>
+                                       <td>Number Of Seats</td>
+                </thead>
+                <tbody>
+                    <t t-set="no" t-value="1"/>
+                    <tr t-foreach="course.session_ids" t-as="session">
+                        <td>
+                            <span t-esc="no"/>
+                        </td>
+                        <td>
+                            <span t-esc="session.name"/>
+                        </td>
+                            <td>
+                            <span t-esc="session.start_date"/>
+                        </td>
+                            <td>
+                            <span t-esc="session.partner_id.sudo().name"/>
+                        </td>
+                            <td>
+                            <span t-esc="session.duration"/>
+                        </td>
+                        <td>
+                            <span t-esc="session_number_of_seats"/>
+                        </td>
+                        <t t-set="no" t-value="no + 1"/>
+
+                    </t>
+                        
+    </template>
+
+    
+       <template id="add_course">
+        <t t-call="website.layout">
+            <t t-set="title">Add Courses</t>
+            <div class="oe_structure">
+                <div class="container mt16">
+                    <div class="row">
+                        <div class="col-md-12 mt16">
+                            <form method="POST" action="/febriacademy/do_add_course">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group mt16">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Course name"/>
+                                </div>
+                                <div class="form-group mt16">
+                                    <select class="form-control" name="user_id">
+                                        <option value="#" selected="">Pilih Responsible</option>
+                                        <t t-foreach="users" t-as="user">
+                                            <option t-att-value="user.id">
+                                                <span t-esc="user.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                <div class="form-group mt16 mb16">
+                                    <label for="name">Description</label>
+                                    <textarea class="form-control" name="description"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+                           
+    </template> -->
+
+        <template id="course">
+            <t t-call="website.layout"/>
+                <t t-set="title">Course</t>
+                <div class="oe_structure"/>
+                <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-4">
+                                <p>
+                                    <a href="/febriacademy/add_course" class="btn btn-primary btn-md">Add Data</a>
+                                </p>
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Course</td>
+                                            <td>Reponsible</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="no" t-value="1"/>
+                                        <tr t-foreach="courses" t-as="course">
+                                            <td>
+                                                <span t-esc="no"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="course.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="course.user_id.name"/>
+                                            </td>
+                                            <td>
+                                                <a t-attf-href="/course/{{slug(course)}}" class="btn btn-info">Detail</a>
+                                                <a t-attf-href="/febriacademy/edit/{{slug(course)}}" class="btn btn-default btn">Edit</a>
+                                                <a t-attf-href="/febriacademy/delete/{{slug(course)}}" class="btn btn-danger">Delete</a>
+                                            </td>
+
+
+                                            <t t-set="no" t-value="no + 1"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <t t-foreach="courses" t-as="course">
+                                <p>
+                                    <a t-attf-href="/course/{{slug(course)}}">
+                                        <t t-esc="course.name"/>
+                                    </a>
+                                </p>
+                            </t>
+
+                        </div>
+                    </div>
+
+              
+            </template>
+
+
+
+            <template id="detail_course">
+                <t t-call="website.layout">
+                    <t t-set="title">Course</t>
+                    <div class="oe_structure"/>
+                    <div class="oe_structure">
+                        <div class="container">
+                            <h3>
+                                <t t-esc="course.name"/>
+                            </h3>
+                            <p>
+                                <span t-esc="course.description"/>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </t>
+            </template>
+
+        </data>
+    </odoo>
+
+  
