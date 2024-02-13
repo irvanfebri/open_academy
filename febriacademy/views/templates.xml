@@ -3,23 +3,18 @@
 
         <template id="template" name="Template Irvan Academy">
             <title>Febri Academy</title>
-            <t t-foreach="teachers" t-as="teacher">
-                <p>
-                    <t t-esc="teacher"/>
-                </p>
-            </t>
+              <t t-foreach="teachers" t-as="teacher">
+                    <p><t t-esc="teacher"/></p>
+              </t>
         </template>
 
         <template id="data" name="Template Data Irvan Academy">
             <title>Febri Academy/ Courses</title>
-            <t t-foreach="courses" t-as="course">
-                <p>
-                    <t t-esc="course.id"/>
- -                    <t t-esc="course.name"/>
-                </p>
-            </t>
+              <t t-foreach="courses" t-as="course">
+                    <p><t t-esc="course.id"/> - <t t-esc="course.name"/> </p>
+              </t>
         </template>
-        <!-- 
+<!-- 
 
        <template id="course">
         <t t-call="website.layout">
@@ -181,86 +176,38 @@
                            
     </template> -->
 
-        <template id="course">
-            <t t-call="website.layout"/>
-                <t t-set="title">Course</t>
-                <div class="oe_structure"/>
-                <div class="oe_structure">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 mt-4">
-                                <p>
-                                    <a href="/febriacademy/add_course" class="btn btn-primary btn-md">Add Data</a>
-                                </p>
-
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <td>No</td>
-                                            <td>Course</td>
-                                            <td>Reponsible</td>
-                                            <td>Action</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-set="no" t-value="1"/>
-                                        <tr t-foreach="courses" t-as="course">
-                                            <td>
-                                                <span t-esc="no"/>
-                                            </td>
-                                            <td>
-                                                <span t-esc="course.name"/>
-                                            </td>
-                                            <td>
-                                                <span t-esc="course.user_id.name"/>
-                                            </td>
-                                            <td>
-                                                <a t-attf-href="/course/{{slug(course)}}" class="btn btn-info">Detail</a>
-                                                <a t-attf-href="/febriacademy/edit/{{slug(course)}}" class="btn btn-default btn">Edit</a>
-                                                <a t-attf-href="/febriacademy/delete/{{slug(course)}}" class="btn btn-danger">Delete</a>
-                                            </td>
-
-
-                                            <t t-set="no" t-value="no + 1"/>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <t t-foreach="courses" t-as="course">
-                                <p>
-                                    <a t-attf-href="/course/{{slug(course)}}">
-                                        <t t-esc="course.name"/>
-                                    </a>
-                                </p>
-                            </t>
-
-                        </div>
-                    </div>
-
-              
-            </template>
-
-
-
-            <template id="detail_course">
-                <t t-call="website.layout">
-                    <t t-set="title">Course</t>
-                    <div class="oe_structure"/>
-                    <div class="oe_structure">
-                        <div class="container">
-                            <h3>
-                                <t t-esc="course.name"/>
-                            </h3>
-                            <p>
-                                <span t-esc="course.description"/>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="oe_structure"/>
+<template id="course">
+    <t t-call="website.layout">
+        <t t-set="title">Course</t>
+        <div class="oe_structure">
+            <div class="container">
+                <t t-foreach="courses" t-as="course">
+                <p>
+                    <a t-attf-href="/course/{{slug(course)}}">
+                        <t t-esc="course.name"/>
+                    </a>
+                </p>
                 </t>
-            </template>
+            </div>
+        </div>
+    </t>
+</template>
 
-        </data>
-    </odoo>
+<template id="detail_course">
+    <t t-call="website.layout">
+        <t t-set="title">Course</t>
+         <div class="oe_structure"/>
+        <div class="oe_structure">
+            <div class="container">
+               <h3><t t-esc="course.name"/></h3>
+               <p><span t-esc="course.description"/></p>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+    </t>
+</template>
+
+    </data> 
+</odoo>
 
   
