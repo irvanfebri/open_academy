@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- perpustakaan.book tree view -->
+    <record id="perpustakaan.book_view_tree" model="ir.ui.view">
+        <field name="name">perpustakaan.book.view.tree</field>
+        <field name="model">perpustakaan.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+            <field name="name" />
+            <field name="total" />
+            <field name="available_book" />              
+            </tree>
+        </field>
+    </record>
+
+    <!-- book form view -->
+    <record id="book_view_form" model="ir.ui.view">
+        <field name="name">perpustakaan.book.view.form</field>
+        <field name="model">perpustakaan.book</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <group>
+                            <field name="name" />
+                            <field name="available_book" />
+                        </group>
+                        <notebook>
+                            <page name="transaction_ids" string="Transaction">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- book action window -->
+    <record id="book_action" model="ir.actions.act_window">
+        <field name="name">Buku</field>
+        <field name="res_model">perpustakaan.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="perpustakaan_menu_root"
+        name="Perpustakaan"
+    />
+
+    <menuitem
+        id="masterdata_menu_categ"
+        name="Master Data "
+        parent = "perpustakaan.perpustakaan_menu_root"
+    />
+
+    <menuitem
+        id="book_menu_act"
+        name="Buku"
+        parent="masterdata_menu_categ" action="book_action"
+    />
+
+</odoo>

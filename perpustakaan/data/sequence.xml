@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="seq_lib_transaction" model="ir.sequence">
+            <field name="name">Anshal Perpustakaan</field>
+             <field name="code">perpustakaan.transaction</field>
+              <field name="prefix">TRX</field>
+               <field name="padding">3</field>
+                <field name="company_id" eval="False"/>
+        </record>
+        
+    
+    </data>
+    
+
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- transaction tree view -->
+    <record id="perpustakaan.transaction_view_tree" model="ir.ui.view">
+        <field name="name">perpustakaan.transaction.view.tree</field>
+        <field name="model">perpustakaan.transaction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="tanggal_pinjam" />
+                    <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- perpustakaan.transaction form view -->
+    <record id="perpustakaan.transaction_view_form" model="ir.ui.view">
+        <field name="name">perpustakaan.transaction.view.form</field>
+        <field name="model">perpustakaan.transaction</field>
+        <field name="arch" type="xml">
+            <form string="">
+                    <header>
+                        <!-- <button name="action_confirm" states="draft" type="object" string="Confirm" class="btn-info" attrs="{'invisible': [('state', 'not in', ['draft])]}"/>
+                        <button name="action_done" states="progress" type="object" string="Done" class="btn-success" attrs="{'invisible' : [('state', 'not in',['progres'])]}"/> -->
+                        <button name="action_confirm" states="draft" type="object" string="Confirm" class="btn-info" />
+                        <button name="action_done" states="progress" type="object" string="Done" class="btn-success" />
+                        <field name="state"  widget="statusbar" statusbar_visible="draft,progres,done"/>
+                    </header>
+            <sheet>
+                <group>
+                    <group> 
+                        <field name="name" />
+                        <field name="partner_id" />
+                        <field name="book_id" />
+                    </group>
+                    <group> 
+                        <field name="tanggal_pinjam" />
+                        <field name="tanggal_kembali" />
+                    </group>
+                </group>
+                <notebook>
+                    <page name="description" string="Description">
+                        <field name="description" />
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers" />
+                <field name="message_ids" widget="mail_thread" />
+            </div>
+            </form>
+        </field>
+    </record>
+
+
+
+</odoo>

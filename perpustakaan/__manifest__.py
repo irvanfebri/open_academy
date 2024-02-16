@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Febri Academy",
+    'name': "perpustakaan",
 
-    'summary': "Module course technical odoo",
+    'summary': "Module Perpus Techinical Odoo",
 
     'description': """
-Module course technical odoo community 17 
+Long description of module's purpose
     """,
 
     'author': "My Company",
@@ -18,20 +18,19 @@ Module course technical odoo community 17
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','website'],
+    'depends': ['base','mail','sale','website_payment','stock'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
-        'views/course.xml',
-        'views/session.xml',
-        'views/partner.xml',
-        'views/teacher_level.xml',
+        'views/book.xml',
+        'views/transaction.xml',
         'views/views.xml',
         'views/templates.xml',
-        'data/data_course.xml',
-        'reports/session.xml',
+        'views/sale.xml',
+        'views/generate_book.xml',
+        'views/picking.xml',
+        'data/sequence.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
